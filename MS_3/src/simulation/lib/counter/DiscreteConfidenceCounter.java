@@ -3,12 +3,56 @@ package simulation.lib.counter;
 /**
  * This class implements a discrete time confidence counter
  */
-public class DiscreteConfidenceCounter {
-    /*
+public class DiscreteConfidenceCounter extends DiscreteCounter{
+
+	/*
      * TODO Problem 3.1.2 - implement this class according to the given class diagram!
      * Hint: see section 4.4 in course syllabus
      */
-
+	private double alpha;
+	
+	public DiscreteConfidenceCounter(String variable) {
+		super(variable, "counter type: discrete-Confidence counter");
+		this.alpha=0.05;
+		// TODO Auto-generated constructor stub
+	}
+	
+	public DiscreteConfidenceCounter(String variable, double alpha){
+		super(variable, "counter type: discrete-Confidence counter");
+		this.alpha=alpha;
+	}
+	
+	public DiscreteConfidenceCounter(String variable, String type, double alpha){
+		super(variable, type);
+		this.alpha=alpha;
+	}
+	
+	public double getT(){
+		
+		return 0.0; //return tn-1, 1-a/2
+	}
+	
+	private int getrow(){
+		
+		return 0;
+	}
+	
+	public double getLowerBound(){
+		return 0.0;
+	}
+	
+	public double getUpperBound(){
+		return 0.0;
+	}
+	
+	public double getBound(){
+		return 0.0;
+	}
+	
+	private double linearInterpol(double dflow, double dfhigh, double tlow, double thigh, long degsOfFreedom){
+		return 0.0;
+	}
+	
     /*	Row 1: degrees of freedom
      *  Row 2: alpha 0.01
      *  Row 3: alpha 0.05
