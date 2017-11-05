@@ -27,17 +27,33 @@ public class DiscreteConfidenceCounter extends DiscreteCounter{
 		this.alpha=alpha;
 	}
 	
-	public double getT(){
-		
-		return 0.0; //return tn-1, 1-a/2
+	public double getT(long degsOfFreedom){
+		int tRow=getRow();
+		double T=0.0;
+		if(degsOfFreedom<=10)
+			T=tAlphaMatrix[tRow][(int) (degsOfFreedom-1)];
+		else if(degsOfFreedom<=100){
+			int col=(int)(degsOfFreedom/10)+8;
+			T=tAlphaMatrix[tRow][col];
+		}
+		else T=tAlphaMatrix[tRow][19];
+		return T; //return tn-1, 1-a/2
 	}
 	
-	private int getrow(){
-		
+	private int getRow(){
+		if(alpha==0.01)
+			return 1;
+		else if(alpha==0.05)
+			return 2;
+		else if(alpha==0.10)
+			return 3;
 		return 0;
 	}
 	
 	public double getLowerBound(){
+		double xMean = super.getMean();
+		double xCvar = super.getCvar();
+		int sampleSize=10; //n
 		return 0.0;
 	}
 	
