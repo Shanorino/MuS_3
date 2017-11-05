@@ -41,11 +41,11 @@ public class DiscreteConfidenceCounter extends DiscreteCounter{
 	}
 	
 	private int getRow(){
-		if(alpha==0.01)
+		if(alpha<0.05)
 			return 1;
-		else if(alpha==0.05)
+		else if(alpha>=0.05 && alpha<0.10)
 			return 2;
-		else if(alpha==0.10)
+		else if(alpha>=0.10)
 			return 3;
 		return 0;
 	}
