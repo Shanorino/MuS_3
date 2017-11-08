@@ -23,13 +23,13 @@ public class DiscreteConfidenceCounter extends DiscreteCounter{
 
     // Constructor with only a String
     public DiscreteConfidenceCounter (String variable) {
-    	super(variable);
+    	super(variable,"DiscreteConfidenceCounter");
     	this.alpha = 0.05;
     }
     
     // Constructor with String and alpha
     public DiscreteConfidenceCounter (String variable, double alpha) {
-    	super(variable);
+    	super(variable,"DiscreteConfidenceCounter");
     	this.alpha = alpha;
     }
     public DiscreteConfidenceCounter (String variable, String type, double alpha) {
@@ -49,8 +49,8 @@ public class DiscreteConfidenceCounter extends DiscreteCounter{
     			break;
     		}
     	}
-        if (degsOfFreedom > tAlphaMatrix[0][tAlphaMatrix.length-1] || degsOfFreedom < tAlphaMatrix[0][0]) 
-        	return tAlphaMatrix[row][tAlphaMatrix.length-1];
+        if (degsOfFreedom > tAlphaMatrix[0][tAlphaMatrix[0].length-1] || degsOfFreedom < tAlphaMatrix[0][0]) 
+        	return tAlphaMatrix[row][tAlphaMatrix[0].length-1];
         return linearInterpol(tAlphaMatrix[0][i-1],
         					tAlphaMatrix[0][i], 
         					tAlphaMatrix[row][i-1], 
@@ -82,8 +82,9 @@ public class DiscreteConfidenceCounter extends DiscreteCounter{
 	}
 	public  double getBound() {
 		long sampleNum=getNumSamples();
-		//double ssqr = sumPowerTwo/(sampleNum-1);
+		//double var = sumPowerTwo/(sampleNum-1);
 		double var=getVariance();
+		double test=getT(sampleNum-1);
 		return getT(sampleNum-1)*Math.sqrt(var/sampleNum);
 	}
     /**

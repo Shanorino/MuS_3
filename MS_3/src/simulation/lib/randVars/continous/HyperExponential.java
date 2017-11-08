@@ -64,11 +64,10 @@ public class HyperExponential extends RandVar {
 	 */
 	@Override
 	public double getVariance() {
-		double first = (p1/lambda1 + p2/lambda2)*(p1/lambda1 + p2/lambda2);
+		double m1Square = this.getMean() * this.getMean();
+		double m2 = 2 * p1 * 1 / Math.pow(lambda1, 2) + 2 * p2 * 1 / Math.pow(lambda2, 2);
 
-		double second = p1*p1*Math.pow(1/lambda1 - 1/lambda1, 2) + p1*p2*Math.pow(1/lambda1 - 1/lambda2, 2) + p2*p1*Math.pow(1/lambda2 - 1/lambda1, 2) + p2*p2*Math.pow(1/lambda2 - 1/lambda2, 2);
-
-		return first + second;
+		return m2 - m1Square;
 	}
 
 	/**
@@ -78,7 +77,11 @@ public class HyperExponential extends RandVar {
 	public void setMean(double m) {
 		if(m <= 0)
 			throw new IllegalArgumentException("mean must not be lower equals 0");
+		double Cvar = (double) Math.round(this.getCvar() * 100000d) / 100000d; // avoiding .999... decimals
         mean =  m;
+		setCvar(Cvar);
+		p2 = lambda2 / (lambda1 + lambda2);
+		p1 = 1 - p2;
 	}
 
 	/**
