@@ -110,6 +110,8 @@ public class HyperExponential extends RandVar {
 			helper = sqrt(helper);
 			lambda1 = 1 / mean * (1 + helper);
 			lambda2 = 1 / mean * (1 - helper);
+			p2 = lambda2 / (lambda1 + lambda2);
+		    p1 = 1 - p2;
 		} else {
             throw new IllegalArgumentException("mean == 0 -> cvar can not be set");
         }
