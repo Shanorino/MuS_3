@@ -48,9 +48,8 @@ public class HyperExponential extends RandVar {
 		}else{
 			return -(Math.log(rng.rnd()) * (1/lambda1));
         }
-
     }
-
+    // Test-Kommentar
 	/**
 	 * @see RandVar#getMean()
 	 */
