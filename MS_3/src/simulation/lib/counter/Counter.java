@@ -1,3 +1,7 @@
+/**
+ * Random Änderung fürs Githublernen :D
+ */
+
 package simulation.lib.counter;
 
 import java.io.File;
@@ -6,6 +10,7 @@ import java.io.IOException;
 
 import simulation.lib.statistic.IStatisticObject;
 
+// hier auch nochmal
 /**
  * Basic counter that counts:
  * * sum power two
